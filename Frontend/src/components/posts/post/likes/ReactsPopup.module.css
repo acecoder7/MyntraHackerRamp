@@ -1,0 +1,31 @@
+.popup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  padding: 7px;
+  border-radius: 50px;
+  gap: 12px;
+  border: 0.4px solid var(--divider);
+  box-shadow: 0 0 2px 1px rgb(0 0 0 / 6%);
+}
+.react {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 100%;
+  transform: scale(0.98);
+  transition: transform 0.2s;
+}
+
+.react:hover {
+  transform: scale(1.2) translateY(-10px);
+}
+.react img {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+
+  transform: scale(1.2);
+}
