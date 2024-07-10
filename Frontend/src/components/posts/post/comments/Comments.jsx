@@ -53,7 +53,7 @@ function Comments({
     if (lastComment) {
       setComments((prev) => [...prev, lastComment]);
     }
-  }, []);
+  }, [lastComment]);  
 
   useEffect(() => {
     if (lastCommentData) setComments((prev) => [lastCommentData, ...prev]);

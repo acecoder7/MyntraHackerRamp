@@ -107,7 +107,8 @@ function Post({ post }) {
 
   useEffect(() => {
     setReactions(post.reactions);
-  }, []);
+  }, [post.reactions]);
+  
 
   useEffect(() => {
     if (isSuccess) {

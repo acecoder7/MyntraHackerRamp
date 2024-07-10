@@ -68,14 +68,14 @@ function SearchMenu({ color, showSearchMenu, setShowSearchMenu }) {
     } else {
       setShowHistory(true);
     }
-  }, [searchTerm]);
-
+  }, [searchTerm, search]); // Added 'search' as a dependency
+  
   useEffect(() => {
     if (isAddedSuccess || isRemovedSuccess) {
       refetchSearchHistory();
     }
-  }, [isAddedSuccess, isRemovedSuccess]);
-
+  }, [isAddedSuccess, isRemovedSuccess, refetchSearchHistory]); // Added 'refetchSearchHistory' as a dependency
+  
   return (
     <div className={`${classes.header_left} ${classes.search_area}`} ref={menu}>
       <div className={classes.search_wrap}>

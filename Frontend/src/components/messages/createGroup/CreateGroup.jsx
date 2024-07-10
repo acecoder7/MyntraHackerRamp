@@ -15,7 +15,7 @@ import { toast } from "react-hot-toast";
 import { useCreateChatGroup } from "../../../hooks/useCreateChatGroup";
 import { useAddMember } from "../../../hooks/useAddMember";
 import { useRenameGroup } from "../../../hooks/useRenameGroup";
-import Portal from "../../../utils/Portal";
+// import Portal from "../../../utils/Portal";
 
 const isDuplicate = (data, obj) =>
   data.some((el) =>
@@ -105,15 +105,15 @@ function CreateGroup({ setShowCreateGroup, showCreateGroup, type, chat }) {
   useEffect(() => {
     const timer = setTimeout(() => setSearchTerm(debouncedTerm), 1000);
     return () => clearTimeout(timer);
-  }, [debouncedTerm]);
+  }, [debouncedTerm]);  
 
   // submit a new search
   useEffect(() => {
     if (searchTerm.trim().length > 0) {
       search({ term: searchTerm });
-    } else {
     }
-  }, [searchTerm]);
+  }, [searchTerm, search]);
+  
 
   useEffect(() => {
     if (type === "create" && CreateChatGroupData?.status === "success") {
@@ -124,13 +124,23 @@ function CreateGroup({ setShowCreateGroup, showCreateGroup, type, chat }) {
     } else if (type === "rename" && RenameGroupData?.status === "success") {
       setShowCreateGroup(false);
     }
-  }, [isSuccess]);
-
+  }, [
+    isSuccess, 
+    type, 
+    CreateChatGroupData?.status, 
+    CreateChatGroupData?.data.chat._id, 
+    AddMemberData?.status, 
+    RenameGroupData?.status, 
+    navigate, 
+    setShowCreateGroup
+  ]);
+  
   useEffect(() => {
     if (isError) {
       toast.error(error?.response?.data?.message);
     }
-  }, [isError]);
+  }, [isError, error?.response?.data?.message]);  
+
   return (
     <div className={`${styles.wrap} blur`}>
       <Card className={styles.card} innerRef={popUpRef}>

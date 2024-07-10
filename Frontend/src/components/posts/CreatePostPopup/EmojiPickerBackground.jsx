@@ -27,11 +27,11 @@ function EmojiPickerBackground({
   useEffect(() => {
     postTextRef.current.focus();
     postTextRef.current.selectionEnd = cursorPosition;
-  }, [cursorPosition]);
+  }, [cursorPosition, postTextRef]);
 
   useEffect(() => {
     postTextRef.current.focus();
-  }, [picker]);
+  }, [picker, postTextRef]);
 
   const handleEmoji = ({ e, emoji }) => {
     const ref = postTextRef.current;
@@ -54,6 +54,7 @@ function EmojiPickerBackground({
       },
     ],
   });
+
   return (
     <div className={classes.emoji_wrap} id="CreatePostPopup">
       {createPost.type === "image" ? (

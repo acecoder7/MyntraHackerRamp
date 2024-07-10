@@ -293,7 +293,7 @@
 
 .pheader {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   height: 60px;
   border-bottom: 1px solid var(--divider);
@@ -384,29 +384,8 @@
 }
 @media (max-width: 960px) {
   .post {
-    width: 93%;
+    width:93%;
   }
-}
-
-@media (max-width: 885px) {
-  .post {
-    width: 100%;
-  }
-}
-
-@media (max-width: 620px) {
-  .post {
-    width: 100%;
-  }
-  .background {
-    height: 300px;
-  }
-}
-@media (max-width: 400px) {
-  .post {
-    width: 100%;
-  }
-
   .post_body {
     padding: 5px;
   }
@@ -422,5 +401,5 @@
 }
 
 :global(.dark) .menu i {
-  filter: invert(100%);
+filter: invert(100%);
 }

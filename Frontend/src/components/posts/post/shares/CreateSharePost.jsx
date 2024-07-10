@@ -34,13 +34,12 @@ function CreateSharePost({
 
   useEffect(() => {
     if (isSuccess && data?.data?.status === "success") {
-      setTimeout(() => {
-        setShowSharePost(false);
-        setSharesCount((perv) => perv + 1);
-        toast.success("Successfully Shared!");
-      }, 300);
+      setShowSharePost(false);
+      setSharesCount((prev) => prev + 1);
+      toast.success("Successfully Shared!");
     }
-  }, [data, isSuccess]);
+  }, [isSuccess, data]);
+  
   return (
     <Portal>
       <div className={`${classes.wrap} blur`}>

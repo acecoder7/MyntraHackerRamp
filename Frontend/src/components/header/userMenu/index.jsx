@@ -37,9 +37,10 @@ export default function UserMenu({ user, setShowUserMenu }) {
 
   useEffect(() => {
     if (data?.status === "success") {
-      dispatch(logout());
+      dispatch(logoutHandler());
     }
-  }, [data, logoutHandler]);
+  }, [data, dispatch, logoutHandler]); // Added 'dispatch' and 'logoutHandler' as dependencies
+  
 
   return (
     <div className={`${styles.menu} shadow`}>

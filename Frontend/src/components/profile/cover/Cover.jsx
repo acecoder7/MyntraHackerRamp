@@ -28,7 +28,7 @@ function Cover({ isVisitor, user, photosData }) {
   useEffect(() => {
     setWidth(coverRef.current.clientWidth);
     setHeight(coverRef.current.clientHeight);
-  }, [window.innerWidth]);
+  }, [coverRef.current.clientWidth, coverRef.current.clientHeight]);  
 
   useEffect(() => {
     if (showOldCover) {
@@ -95,27 +95,31 @@ function Cover({ isVisitor, user, photosData }) {
     mutationFn: sendPost,
   });
 
+  
+
   const updateCover = async () => {
     try {
-      let img = await getCroppedImage(false);
+      let img = await getCroppedImage(false); // Assuming getCroppedImage is defined elsewhere
       let blob = await fetch(img).then((r) => r.blob());
       let form = new FormData();
       form.append("photo", blob);
-      mutate(form);
+      // Assuming `mutate` is a function that dispatches an action to update cover photo
+      dispatch(mutate(form));
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
+    // Assuming `isSuccess`, `data`, `coverRef`, and `updateCoverPhoto` are defined elsewhere
     if (isSuccess && data?.data?.status === "success") {
       coverRef.current.style.backgroundImage = `url(${data.data.data.url})`;
-      dispatch(updateCoverPhoto(data.data.data.url));
+      dispatch(updateCoverPhoto(data.data.data.url)); // Assuming updateCoverPhoto is a Redux action creator
       setTimeout(() => {
         setImage(null);
       }, 200);
     }
-  }, [data, isSuccess]);
+  }, [data, isSuccess, coverRef, dispatch]); 
 
   useOnClickOutside(CoverMenuRef, showCoverMneu, () => {
     setShowCoverMenu(false);

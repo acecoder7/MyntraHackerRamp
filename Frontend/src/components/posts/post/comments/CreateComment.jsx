@@ -25,7 +25,7 @@ function CreateComment({
   const [picker, setPicker] = useState(false);
   const [commentImage, setCommentImage] = useState("");
 
-  const [cursorPosition, setCursorPosition] = useState();
+  const [cursorPosition, setCursorPosition] = useState("");
   const [commentText, setCommentText] = useState("");
   const pickerRef = useRef();
   const imgInput = useRef(null);
@@ -46,7 +46,7 @@ function CreateComment({
     ],
   });
 
-  const handleEmoji = ({ e, emoji }) => {
+  const handleEmoji = ({ emoji }) => {
     const ref = commentRef.current;
     ref.focus();
     const start = commentText.substring(0, ref.selectionStart);
@@ -108,13 +108,13 @@ function CreateComment({
         commentCountHandler(commendData.data.commentsCount);
       }
     }
-  }, [commendData, isSuccess]);
+  }, [commendData, isSuccess, type, setCommentImage, setCommentText, setReplies, setCount, setLastCommentData, commentCountHandler]);
 
   useEffect(() => {
     if (isError) {
       toast.error(error?.response?.data.message || "Something went wrong");
     }
-  }, [isError]);
+  }, [isError, error]);  
 
   return (
     <FormLoader loading={isLoading} type={2}>

@@ -55,7 +55,7 @@ function CreatePostPopup({ user }) {
         dispatch(createPostSlice.success());
       }, 300);
     }
-  }, [data, isSuccess]);
+  }, [data, isSuccess, dispatch]);
 
   const postSubmit = () => {
     let form = new FormData();

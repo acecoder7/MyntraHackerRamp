@@ -29,7 +29,8 @@ function ChatTheme({ showChatTheme, setShowChatTheme, chatTheme, chat }) {
     if (isChangeThemeSuccess) {
       setShowChatTheme(false);
     }
-  }, [isChangeThemeSuccess]);
+  }, [isChangeThemeSuccess, setShowChatTheme]); // Added 'setShowChatTheme' as a dependency
+  
 
   return (
     <div className={`${styles.wrap} blur`}>

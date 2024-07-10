@@ -27,7 +27,7 @@ function SearchUser({ color, showSearchMenu, setShowSearchMenu }) {
   const {
     mutate: getChat,
     data: chatData,
-    isLoading: isGetChatLoading,
+    // isLoading: isGetChatLoading,
     isSuccess: isGetChatSuccess,
   } = useGetChat();
 
@@ -47,7 +47,8 @@ function SearchUser({ color, showSearchMenu, setShowSearchMenu }) {
     if (chatData?.status === "success") {
       navigate(`/messages/${chatData.data.chat._id}`);
     }
-  }, [isGetChatSuccess]);
+  }, [chatData, navigate]); // Added 'chatData' and 'navigate' as dependencies
+  
 
   useEffect(() => {
     const timer = setTimeout(() => setSearchTerm(debouncedTerm), 1000);
@@ -62,7 +63,8 @@ function SearchUser({ color, showSearchMenu, setShowSearchMenu }) {
     } else {
       setShowHistory(true);
     }
-  }, [searchTerm]);
+  }, [searchTerm, search]); // Added 'search' as a dependency
+  
 
   return (
     <div className={`${classes.header_left} ${classes.search_area}`} ref={menu}>
